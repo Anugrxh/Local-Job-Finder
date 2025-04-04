@@ -1,111 +1,94 @@
-#body11{
+#body11 {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
-    margin:0;
+    margin: 0;
     padding: 0;
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-size:cover;
+    min-height: 100vh;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-   
-} 
-.container11{
+  }
+  
+  .container11 {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 400px;
-    height: 500px;
     background-color: white;
-}
-.heading11{
-    color:#5a7f65;
+  }
+  
+  .heading11 {
+    color: #5a7f65;
     text-align: center;
-}
-#jobForm11 {
+    margin-bottom: 20px;
+  }
+  
+  #jobForm11 {
     display: flex;
     flex-direction: column;
-    height:350px ;
-}
-.age11{
-    margin: 10px 0 5px;
-    color:black; 
-    font-size: 18px;
-}
-.name11{
-    margin: 10px 0 5px;
-    color: black;
-    font-size: 18px;
-}
-.phone11{
+  }
+  
+  .name11,
+  .email11,
+  .phone11,
+  .age11,
+  .gender11,
+  .password11 {
     margin: 10px 0 5px;
     color: black;
-    font-size: 18px;
-}
-.gender11{
-    margin: 10px 0 5px;
-    color: black;
-    font-size: 18px;
-}
-select{
+    font-size: 16px;
+    display: block;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  select {
+    width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width:300px;
-}
-#name{
-    width:390px;
-    height:39px;
-    border-radius: 4px;
     font-size: 15px;
-    padding-left: 10px;
-}
-#phone{
-    width:390px;
-    height:39px;
-    border-radius: 4px;
-    font-size: 15px;
-    padding-left: 10px;
-}
-#age{
-    width:390px;
-    height:39px;
-    border-radius: 4px;
-    font-size: 15px;
-    padding-left: 10px; 
-}
-#gender{
-    width:405px;
-    height:39px;
-    border-radius: 4px;
-    margin:0;
-    font-size: 15px;
-}
-#submit11 {
-    background-color:#5a7f65;
-    color:white;
-    width:405px;
-    height: 39px;
+    box-sizing: border-box;
+  }
+  
+  select {
+    width: 100%;
+  }
+  
+  #submit11 {
+    background-color: #5a7f65;
+    color: white;
+    width: 100%;
+    padding: 10px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    font-size: medium;
-}
-
-#submit11:hover {
-    background-color:#5a7f65;
-     transform:scale(1.05); /*zoom effect */
-}
-.alreadyLogin1{
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  #submit11:hover {
+    background-color: #4a6a54;
+    transform: scale(1.02);
+  }
+  
+  .alreadyLogin1 {
     color: black;
-    margin-left: 19%;
+    text-align: center;
+    margin-top: 15px;
     text-decoration: underline;
-    font-size: large;
+    font-size: 16px;
     cursor: pointer;
-}
-
-
-   
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+  }
