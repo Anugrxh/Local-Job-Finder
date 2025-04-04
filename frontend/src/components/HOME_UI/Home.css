@@ -1,0 +1,234 @@
+
+#homeBody{
+    height:100vh;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+
+
+}
+#homeheader{
+    height: 60px;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    padding-top:20px;
+    padding-bottom: 20px;
+    position: fixed;
+    justify-content: space-between;
+}.logohome{
+    margin-left: 50px;
+}
+#paradiv{
+    display: flex;
+    margin-right: 50px;
+}
+.homepara{
+    color: #5a7f65;
+    font-size: x-large;
+    margin: 20px 19px 20px 0px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.homepara1{
+    color: #5a7f65;
+    font-size: x-large;
+    margin: 20px 19px 20px 0px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#homediv{
+    background-color: black;
+    height:704px;
+    padding:100px 50px 20px 50px;
+    
+}
+#topheading{
+    color: #ffff;
+    font-size: 60px;
+    margin: 30px 0px 20px 0px;
+    text-align: center;
+}
+#bottompara{
+    color: #ffff;
+    font-size: 28px;
+    margin:0px 0px 10px 0px;
+    padding:0;
+    text-align: center;
+}
+#bgdiv{
+    background-color: beige;
+    height:563px;
+
+}
+.bghome{
+    height:563px;
+    width: 100%;
+}
+#featuresdiv{
+    background-color: #ffff;
+    height:700px;
+    display:flex;
+}
+#leftfeatures{
+    background-color:#ffff;
+    height:700px;
+    width:706px;
+}
+#rightfeatures{
+    background-color: #ffff;
+    height:700px;
+    width:706px;
+}
+#featurespara1{
+    color: #5a7f65;
+    font-size: 30px;
+}
+#featurespara{
+    margin-top: 250px;
+    color: #5a7f65;
+    font-size: 40px;
+    font-weight: bold;
+}
+#signindiv{
+    background-color:#ffff;
+    height:500px;
+    padding-top: 140px;
+}
+#signinpara{
+    font-size: 40px;
+    text-align: center;
+    color: #5a7f65;
+    font-weight: bold;
+    margin-top: 10px;
+}
+#signinpara1{
+    margin-top: 0px;
+    font-size: 30px;
+    text-align: center;
+    color: #5a7f65;
+    font-weight: bold;
+}
+#employeebutton{
+    background-color: #5a7f65;
+    color: #ffff;
+    width:200px;
+    height:50px;
+    margin-left:400px;
+    font-size: medium;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+#employerbutton{
+    background-color: #5a7f65;
+    color: #ffff;
+    width:200px;
+    height:50px;
+    margin-left:200px;
+    font-size: medium;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+#employeebutton:hover {
+    background-color:#5a7f65;
+     transform:scale(1.05); /*zoom effect */
+}
+#employerbutton:hover {
+    background-color:#5a7f65;
+     transform:scale(1.05); /*zoom effect */
+}
+#signinpara2{
+    font-size: 30px;
+    text-align: center;
+    color: #5a7f65;
+    margin-top: 40px;
+    font-weight: bold;
+   
+}
+#signinpara3{
+    font-size: 35px;
+    text-align: center;
+    color: #5a7f65;
+    font-weight: bold;
+}
+#createbutton{
+    background-color: #5a7f65;
+    color: #ffff;
+    width:200px;
+    height:50px;
+    margin-left:610px;
+    font-size: medium;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+html,body{
+    margin:0;
+    padding:0;
+}
+#createbutton:hover {
+    background-color:#5a7f65;
+     transform:scale(1.05); /*zoom effect */
+}
+#contactdiv{
+    background-color:white;
+    height:500px;
+    padding: 0px;
+
+}
+#contact{
+    color: #5a7f65;
+    font-size: 35px;
+    padding: 0px;
+    text-align: center;
+    margin-top: 80px;
+    font-weight: bold;
+}
+.contactpara{
+    color: #5a7f65;
+    font-size: 35px;
+    padding: 0px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+#contactForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.contactInput, .contactTextarea {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #5a7f65;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+.contactTextarea {
+    height: 100px;
+    resize: none;
+}
+
+#contactButton {
+    background-color: #5a7f65;
+    color: #fff;
+    padding: 12px 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#contactButton:hover {
+    background-color: #4e6b58;
+}

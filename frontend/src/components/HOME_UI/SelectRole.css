@@ -1,0 +1,70 @@
+#container3 {
+  width: 300px;
+  height: 500px;
+  padding: 20px;
+  background-color: #ffff;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+
+.heading3 {
+  color: #5a7f65;
+  text-align: center;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.topdiv, .bottomdiv {
+  width: 300px;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.topdiv {
+  background-image: url('../../components/images/jobSearch.jpg');
+}
+
+.bottomdiv {
+  background-image: url('../../components/images/hire.jpg');
+}
+
+.option1, .option2 {
+  margin-top: 55%;
+  margin-left: 17%;
+  width: 200px;
+  height: 35px;
+  color: #ffffff;
+  border-radius: 4px;
+  font-size: medium;
+  background-color: #5a7f65;
+  border: none;
+  cursor: pointer;
+}
+
+.option1:hover, .option2:hover {
+  background-color: #5a7f65;
+  transform: scale(1.05); /* Zoom effect */
+}
+
+@media (max-width: 480px) {
+  #container3 {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 50px;
+  }
+
+  .topdiv, .bottomdiv, .option1, .option2 {
+      margin-left: auto;
+      margin-right: auto;
+  }
+}

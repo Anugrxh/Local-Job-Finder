@@ -1,0 +1,94 @@
+.body3{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center; */
+    width:1000px;
+    height:550px;
+    margin-left: 250px;
+    margin-top: 100px;
+    margin-bottom: 0;
+} 
+
+#container5{
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 1000px;
+    height:570px;
+    text-align: left;
+    background-color: #ffff;
+}
+.heading5{
+    color:#5a7f65;
+    text-align: center;
+}
+.label3{
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size:larger;
+}
+.label4{
+    font-family: Arial, sans-serif;
+    font-size: large;
+}
+#jobForm3{
+    display: flex;
+    flex-direction: column;
+    height:550px ;
+}
+#sname{
+    width:990px;
+    height:29px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#address{
+    width:990px;
+    height:29px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#location{
+    width:990px;
+    height:29px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#phone1{
+    width: 990px;
+    height:29px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#wphone{
+    width:990px;
+    height:29px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+.buttonSubmit2{
+    width:1005px;
+    height:39px;
+    background-color: #5a7f65;
+    color: #ffff;
+    font-size: medium;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.buttonSubmit2:hover {
+    background-color:#5a7f65;
+     transform:scale(1.05); /*zoom effect */
+}

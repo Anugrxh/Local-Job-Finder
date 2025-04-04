@@ -1,0 +1,114 @@
+#body2{
+    font-family: Arial, sans-serif;
+    background-color: #ffff;
+    margin-top: 50px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    width:1000px;
+    margin-left: 250px;
+} 
+#container4{
+    background-color: #ffff;
+    width:1000px;
+    height:800px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin: 5%;
+    margin-top: 10%;
+}
+#jobForm2{
+    width:1000px;
+    height:700px;
+    display: flex;
+    flex-direction: column;
+}
+.heading4{
+    color:#5a7f65;
+    text-align: center;
+}
+#label1{
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: larger;
+}
+.label2{
+    font-family: Arial, sans-serif;
+    font-size: large;
+}
+#input1{
+    width:980px;
+    height: 39px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+ #input2{
+    width:980px;
+    height:39px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#input3{
+    width:980px;
+    height: 39px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#input4{
+    width: 992px;
+    height: 39px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#input5{
+    width:980px;
+    height: 39px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#input6{
+    width:980px;
+    height: 39px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#inputljob{
+    width:980px;
+    height: 39px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+.nextButton{
+    background-color: #5a7f65;
+    width:995px;
+    height:39px;
+    color: #ffff;
+    font-size: medium;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.nextButton:hover {
+    background-color:#5a7f65;
+     transform:scale(1.05); /*zoom effect */
+}
+.day{
+    display: flex;
+     gap: 10px; 
+}
+.night{
+    display: flex; 
+    gap: 10px; 
+} 

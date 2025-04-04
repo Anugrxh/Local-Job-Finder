@@ -1,0 +1,63 @@
+#bodyedit{
+    font-family: Arial, sans-serif;
+    background-color: #ffff;
+    margin-top: 50px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+    width:1000px;
+    margin-left: 250px;
+} 
+#container44{
+    background-color: #ffff;
+    width:1000px;
+    height:1050px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin: 5%;
+    margin-top: 10%;
+}
+#jobForm24{
+    width:1000px;
+    height:1050px;
+    display: flex;
+    flex-direction: column;
+}
+.heading44{
+    color:#5a7f65;
+    text-align: center;
+}
+.label34{
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: larger;
+}
+.label24{
+    font-family: Arial, sans-serif;
+    font-size: large;
+}
+#editinput{
+    width:980px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+#savechanges{
+    background-color: #5a7f65;
+    width:995px;
+    height:39px;
+    color: #ffff;
+    font-size: medium;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+#savechanges:hover {
+    background-color:#5a7f65;
+     transform:scale(1.05); /*zoom effect */
+}

@@ -1,0 +1,74 @@
+.admin-dashboard11 {
+  font-family: Arial, sans-serif;
+  background-color: #f4f5f6;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.admin-header11 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffff;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+}
+
+#headeradmin {
+  color: #5a7f65;
+  margin: 0 auto; 
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.stats-card {
+  background-color: #5a7f65;
+  color: white;
+}
+
+.btn11 {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #5a7f65;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn11:hover {
+  background-color: #5a7f65;
+}
+
+.admin-logout-btn {
+  background-color: #b31b19;
+  color: white;
+  right: 20px;
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: auto; /* Pushes the button to the right */
+}
+.admin-logout-btn:hover {
+    background-color: #a01816; /* Darker shade on hover */
+}

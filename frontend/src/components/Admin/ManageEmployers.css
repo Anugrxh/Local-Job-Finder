@@ -1,0 +1,76 @@
+.applicantsdiv17{
+    background-color:#ffff;
+    margin: 0;
+    padding: 0;
+    display: flex; 
+    width:100vw;
+    height:100vh;
+    flex-direction: column;
+  }
+  #headerapplicants17{
+        height: 60px;
+        width: 100%;
+        background-color: black;
+        display: flex;
+        padding-top:20px;
+        padding-bottom: 20px;
+        position: fixed;
+        margin-top: 0px;
+    }
+  #paradivapplicants17{
+      display: flex;
+  }
+  #jobdetailsapplicants17{
+      color: #5a7f65;
+      font-size: 30px;
+      margin: 20px 90px 0px 0px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-left: 400px;
+  }
+  .bottomapplicants17{
+      background-color:#ffff;
+      width:100vw;
+      height: 100%;
+  }
+  .applicant-listapplicants17 {
+      background-color:#000;
+      display: flex;
+      flex-direction: column;
+      width:100%;
+      height:100%;
+      padding-top: 120px;
+  }
+  .applicant-cardapplicants17{
+      background: #f4f4f9;
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      height:260px;
+      margin: 20px 50px 0px 50px;
+  }
+  #employeename117{
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 30px;
+      padding:0px;
+      margin: 0px;
+      color: #5a7f65;
+    }
+  .otherdata17{
+      font-size: large;
+  }
+  #buttondiv127{
+      display: flex;  
+      width: 100%;
+      height:50px;
+  }
+  #buttondiv117{
+      padding-top: 15px;
+      margin: 0px;
+  }
+  #paradiv257{
+    display: flex;
+    /* margin-right: 50px; */
+    margin-left:350px;
+}
