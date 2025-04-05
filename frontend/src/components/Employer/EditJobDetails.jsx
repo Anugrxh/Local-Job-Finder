@@ -1,51 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
-import './JobAdd.css'; // Use the same CSS
+import './JobAdd.css';
 
 function Edit() {
   const { jobId } = useParams();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({
-    post: '',
-    minsal: '',
-    maxsal: '',
+    title: '',
+    minSalary: '',
+    maxSalary: '',
     qualification: '',
     age: '',
     vacancies: '',
     shift: '',
-    sname: '',
+    company: '',
     address: '',
     location: '',
     phone: '',
-    wphone: '',
+    whatsapp: '',
     jobDescription: '',
   });
 
   useEffect(() => {
-    // Fetch job data based on jobId and populate formData
-    // Replace this with your actual data fetching logic
     const fetchJobData = async () => {
-      // Example: Simulate fetching data
-      const jobData = {
-        post: 'electrician',
-        minsal: '10000',
-        maxsal: '20000',
-        qualification: 'diploma',
-        age: '25',
-        vacancies: '3',
-        shift: 'day',
-        sname: 'Example Company',
-        address: '123 Main St',
-        location: 'Anytown',
-        phone: '123-456-7890',
-        wphone: '987-654-3210',
-        jobDescription: 'Example job description',
-      };
-
-      setFormData(jobData);
+      try {
+        const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`);
+        if (!response.ok) throw new Error("Failed to fetch job data");
+        const data = await response.json();
+        setFormData(data);
+      } catch (error) {
+        console.error("Error fetching job data:", error);
+      }
     };
-
     fetchJobData();
   }, [jobId]);
 
@@ -54,52 +41,72 @@ function Edit() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const {
-      post,
-      minsal,
-      maxsal,
+      title,
+      minSalary,
+      maxSalary,
       qualification,
       age,
       vacancies,
       shift,
-      sname,
+      company,
       address,
       location,
       phone,
-      wphone,
+      whatsapp,
       jobDescription,
     } = formData;
 
     if (
-      !post ||
-      !minsal ||
-      !age ||
-      !maxsal ||
-      !qualification ||
-      !vacancies ||
-      !shift ||
-      !sname ||
-      !address ||
-      !location ||
-      !phone ||
-      !wphone ||
-      !jobDescription
+      !title || !minSalary || !maxSalary || !qualification || !age ||
+      !vacancies || !shift || !company || !address || !location ||
+      !phone || !whatsapp || !jobDescription
     ) {
       setErrorMessage("All fields are required.");
-    } else if (parseInt(age) < 18) {
+      return;
+    }
+
+    if (parseInt(age) < 18) {
       alert("You must be at least 18 years old to proceed!");
-    } else if (isNaN(minsal) || isNaN(maxsal)) {
+      return;
+    }
+
+    if (isNaN(minSalary) || isNaN(maxSalary)) {
       alert("Salary must be a number.");
-    } else if (isNaN(vacancies)) {
+      return;
+    }
+
+    if (isNaN(vacancies)) {
       alert("Number of vacancies must be a number.");
-    } else {
-      setErrorMessage("");
-      // Update job data based on jobId
-      // Replace this with your actual update logic
-      navigate('/JobAdd/ShopDetails'); // Redirect after update
+      return;
+    }
+
+    setErrorMessage("");
+
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user?.id;
+
+      const response = await fetch(`http://localhost:5000/api/jobs/${jobId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ...formData, userId }),
+      });
+
+      if (response.ok) {
+        alert("Job updated successfully!");
+        navigate('/EmployerHomePage');
+      } else {
+        alert("Failed to update job.");
+      }
+    } catch (error) {
+      console.error("Error updating job:", error);
+      alert("Something went wrong.");
     }
   };
 
@@ -109,9 +116,10 @@ function Edit() {
         <h1 className="job-details-heading">Edit Job Details</h1>
         <label className="job-details-label">About the Job</label>
         <form onSubmit={handleSubmit} className="job-details-form-content">
-          <label htmlFor="post" className="job-details-input-label">Select Job Role*</label>
-          <select name="post" className="job-details-input" value={formData.post || ''} onChange={handleChange} required>
-            <option value="">Select Job Role</option>
+
+          <label htmlFor="title" className="job-details-input-label">Select Job Role*</label>
+          <select name="title" className="job-details-input" value={formData.title || ''} onChange={handleChange} required>
+            <option value="">Select Role</option>
             <option value='electrician'>Electrician</option>
             <option value='plumber'>Plumber</option>
             <option value='cleaner'>Cleaning Staff</option>
@@ -134,14 +142,14 @@ function Edit() {
 
           <label className="job-details-input-label">Monthly Income</label>
           <div className="salary-input-group">
-            <input type="text" name="minsal" placeholder='Min Salary' value={formData.minsal} onChange={handleChange} className="job-details-input salary-input" required />
-            <input type="text" name="maxsal" placeholder='Max Salary' value={formData.maxsal} onChange={handleChange} className="job-details-input salary-input" required />
+            <input type="text" name="minSalary" placeholder='Min Salary' value={formData.minSalary} onChange={handleChange} className="job-details-input salary-input" required />
+            <input type="text" name="maxSalary" placeholder='Max Salary' value={formData.maxSalary} onChange={handleChange} className="job-details-input salary-input" required />
           </div>
 
           <label htmlFor='qualification' className="job-details-input-label">Required Qualification*</label>
           <select name="qualification" className="job-details-input" value={formData.qualification || ''} onChange={handleChange} required>
             <option value="">Select Qualification</option>
-            <option value='pg'>Post Graduate</option>
+            <option value='pg'>title Graduate</option>
             <option value='ug'>Under Graduate</option>
             <option value='diploma'>Diploma</option>
             <option value='plustwo'>Higher Secondary</option>
@@ -164,8 +172,8 @@ function Edit() {
 
           <label className="job-details-label">About the Shop</label>
 
-          <label htmlFor="name1" className="job-details-input-label">Company Name*</label>
-          <input type="text" name="sname" placeholder="Enter shop name" className="job-details-input" value={formData.sname} onChange={handleChange} required />
+          <label htmlFor="company" className="job-details-input-label">Company Name*</label>
+          <input type="text" name="company" placeholder="Enter shop name" className="job-details-input" value={formData.company} onChange={handleChange} required />
 
           <label className="job-details-input-label">Address*</label>
           <input type="text" name="address" placeholder="address" className="job-details-input" value={formData.address} onChange={handleChange} required />
@@ -179,10 +187,12 @@ function Edit() {
           <input type="tel" name="phone" placeholder="Enter phone number" className="job-details-input" value={formData.phone} onChange={handleChange} required />
 
           <label className="job-details-input-label">WhatsApp Number*</label>
-          <input type="tel" name="wphone" placeholder="Enter WhatsApp number" className="job-details-input" value={formData.wphone} onChange={handleChange} required />
+          <input type="tel" name="whatsapp" placeholder="Enter WhatsApp number" className="job-details-input" value={formData.whatsapp} onChange={handleChange} required />
 
           <button type="submit" className="job-details-submit-button">Update</button>
         </form>
+
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
     </div>
   );

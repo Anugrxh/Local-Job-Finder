@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LoginEmployee.css';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';s
+import axios from 'axios';
 
 function LoginEmployee() {
   const [formData, setFormData] = useState({ email: '', password: '' });

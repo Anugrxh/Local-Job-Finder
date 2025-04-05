@@ -38,8 +38,8 @@ function App() {
 
         <Route path="/AdministratorLogin" element={< AdministratorLogin/>} />
         <Route path="/AdministratorHome" element={< AdministratorHome/>} />
-        <Route path="/ViewApplicants" element={< ViewApplicants/>} />
-        <Route path="/EditJobDetails" element={< EditJobDetails/>} />
+        <Route path="/ViewApplicants/:jobId" element={< ViewApplicants/>} />
+        <Route path="/EditJobDetails/:jobId" element={< EditJobDetails/>} />
         <Route path="/Home" element={< Home/>} />
         <Route path="/ManageEmployee" element={< ManageEmployee/>} />
         <Route path="/ManageEmployers" element={< ManageEmployers/>} />
