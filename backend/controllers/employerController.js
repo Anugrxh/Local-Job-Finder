@@ -9,9 +9,7 @@ const twilio = require('twilio');
 
 dotenv.config()
 
-const accountSid = '';
-const authToken = '';
-const client = new twilio(accountSid, authToken);
+// const client = new twilio(accountSid, authToken);
 
 const transporter = nodemailer.createTransport({
   service: "gmail", // You can use other services like Outlook, or custom SMTP
@@ -120,13 +118,13 @@ const contactEmployee = async (req, res) => {
       // }
 
       // SMS logic
-      const messageBody = `Hi ${employee.fullname}, you have been shortlisted for the job: ${job.title}. \n For further movements please contact the following. \n Call: ${job.phone} \n Whatsapp: ${job.whatsapp} `;
+      // const messageBody = `Hi ${employee.fullname}, you have been shortlisted for the job: ${job.title}. \n For further movements please contact the following. \n Call: ${job.phone} \n Whatsapp: ${job.whatsapp} `;
 
-      const sms = await client.messages.create({
-        body: messageBody,
-        from: '+16812011827', // your Twilio phone number
-        to: `+918089517640` // must be in E.164 format, e.g., +919876543210
-      });
+      // const sms = await client.messages.create({
+      //   body: messageBody,
+      //   from: '+16812011827', // your Twilio phone number
+      //   to: `+918089517640` // must be in E.164 format, e.g., +919876543210
+      // });
 
       console.log("SMS sent:", sms.sid);
 
