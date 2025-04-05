@@ -9,8 +9,8 @@ const twilio = require('twilio');
 
 dotenv.config()
 
-const accountSid = 'AC102da153fdaf5c0e7d16d6b44fb6f7aa';
-const authToken = 'ab7dcfacf996b0d718b0c6ccbfabf5cf';
+const accountSid = '';
+const authToken = '';
 const client = new twilio(accountSid, authToken);
 
 const transporter = nodemailer.createTransport({
