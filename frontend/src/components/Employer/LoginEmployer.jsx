@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './LoginEmployer.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function LoginEmployer() {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -12,17 +13,32 @@ function LoginEmployer() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     const { email, password } = formData;
 
     if (!email || !password) {
       setErrorMessage("All fields are required.");
-    } else {
-      setErrorMessage(""); // Clear any existing error message
-      alert("Login successful!");
-      navigate("/EmployerHomePage"); // Redirect to the employer homepage
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:5000/api/employer/login", {
+        email,
+        password
+      });
+
+      if (response.data.message === "Login successful") {
+        localStorage.setItem("employerToken", response.data.token); // Store JWT token
+        localStorage.setItem("employerData", JSON.stringify(response.data.employer));
+        alert("Login successful!");
+        setErrorMessage("");
+        navigate("/EmployerHomePage");
+      } else {
+        setErrorMessage(response.data || "Invalid credentials.");
+      }
+    } catch (error) {
+      setErrorMessage("Server error: " + error.response.data)
     }
   };
 
@@ -52,7 +68,7 @@ function LoginEmployer() {
             required
           />
           {errorMessage && <p style={{ color: "blue", margin: 0 }}>{errorMessage}</p>}
-          <button id="submit21">Login</button>
+          <button id="submit21" type="submit">Login</button>
         </form>
       </div>
     </div>

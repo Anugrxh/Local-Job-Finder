@@ -37,7 +37,7 @@ function EmployerRegistration() {
     } else {
       try {
         setErrorMessage("");
-        const response = await axios.post("http://localhost:3001/employer/register", {
+        const response = await axios.post("http://localhost:5000/api/employer/register", {
           name,
           email,
           phone,

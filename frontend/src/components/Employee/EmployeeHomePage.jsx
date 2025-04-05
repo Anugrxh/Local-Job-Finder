@@ -31,9 +31,16 @@ const EmployeeHomePage = () => {
           <p id="jobdetails15">Job Details</p>
         </div>
         <div id="paradiv25">
-          <p id="logout" onClick={() => navigate("/Home")}>
-            Log out
-          </p>
+        <p
+          id="logout"
+          onClick={() => {
+            localStorage.removeItem("employeeToken"); // Clear the token
+            localStorage.removeItem("employeeData"); // Clear the token
+            navigate("/Home"); // Redirect to home
+          }}
+        >
+          Log out
+        </p>
         </div>
       </div>
       <div className="bottom15">

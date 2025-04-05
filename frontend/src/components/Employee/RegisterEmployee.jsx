@@ -51,10 +51,24 @@ function RegisterEmployee() {
       return;
     }
 
-    // Success message
-    alert("Registration successful!");
-    setErrorMessage("");
-    navigate('/EmployeeHomePage');
+    fetch('http://localhost:5000/api/employees/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === 'Registration successful') {
+          alert(data.message);
+          navigate('/LoginEmployee');
+        } else {
+          setErrorMessage(data.message || 'Something went wrong');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setErrorMessage('Server error. Try again later.');
+      });
   };
 
   return (
