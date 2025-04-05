@@ -38,30 +38,30 @@ const EmployeeHomePage = () => {
       </div>
       <div className="bottom15">
         <div className="applicant-list15">
-          <div className="filters">
-            <select id="firstselect">
-              <option value="">Job Category</option>
-              <option value="IT">IT</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Design">Design</option>
-            </select>
+        <div className="filters" style={{ display: 'flex', gap: '10px' }}>
+  <select id="firstselect">
+    <option value="">Job Category</option>
+    <option value="IT">IT</option>
+    <option value="Marketing">Marketing</option>
+    <option value="Design">Design</option>
+  </select>
 
-            <select id="secondselect">
-              <option value="">Place</option>
-              <option value="Bangalore, India">Bangalore</option>
-              <option value="Mumbai, India">Mumbai</option>
-              <option value="Delhi, India">Delhi</option>
-            </select>
+  <select id="secondselect">
+    <option value="">Place</option>
+    <option value="Bangalore, India">Bangalore</option>
+    <option value="Mumbai, India">Mumbai</option>
+    <option value="Delhi, India">Delhi</option>
+  </select>
 
-            <select id="Thirdselect">
-              <option value="">Salary</option>
-              <option value="₹30,000 - ₹50,000">₹30,000 - ₹50,000</option>
-              <option value="₹40,000 - ₹60,000">₹40,000 - ₹60,000</option>
-              <option value="₹50,000 - ₹70,000">₹50,000 - ₹70,000</option>
-            </select>
+  <select id="Thirdselect">
+    <option value="">Salary</option>
+    <option value="₹30,000 - ₹50,000">₹30,000 - ₹50,000</option>
+    <option value="₹40,000 - ₹60,000">₹40,000 - ₹60,000</option>
+    <option value="₹50,000 - ₹70,000">₹50,000 - ₹70,000</option>
+  </select>
 
-            <button className="filter-btn">Filter</button>
-          </div>
+  <button className="filter-btn">Filter</button>
+</div>
 
           <div className="applicant-card15">
             <div id="jobName">
