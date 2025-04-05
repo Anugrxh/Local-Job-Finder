@@ -1,5 +1,6 @@
 const Employee = require('../models/Employee');
 const bcrypt = require('bcrypt');
+const Job = require('../models/Job')
 
 const jwt = require('jsonwebtoken')
 
@@ -65,4 +66,25 @@ const loginEmployee = async (req, res) => {
     }
   };
 
-module.exports = { registerEmployee, loginEmployee };
+  const filterOptions = async(req, res) => {
+    try {
+      const categories = await Job.distinct('title');
+      const locations = await Job.distinct('location');
+      
+      const salaries = await Job.find({}, 'minSalary maxSalary');
+      const salaryRanges = [];
+  
+      salaries.forEach(job => {
+        const range = `₹${job.minSalary} - ₹${job.maxSalary}`;
+        if (!salaryRanges.includes(range)) {
+          salaryRanges.push(range);
+        }
+      });
+      res.json({ categories, locations, salaryRanges });
+    } catch (err) {
+      console.log(err)
+      res.status(500).json({ error: 'Failed to fetch filters'});
+    }
+  }
+
+module.exports = { registerEmployee, loginEmployee, filterOptions };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./EmployeeHomePage.css";
 import logo1 from "../../components/images/logo1.png";
 
@@ -11,49 +12,56 @@ const EmployeeHomePage = () => {
     location: "",
     salaryRange: "",
   });
+  const [categories, setCategories] = useState([]);
+  const [locations, setLocations] = useState([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/api/jobs");
-        const data = await res.json();
-        setJobs(data);
-        setFilteredJobs(data);
-      } catch (error) {
-        console.error("Error fetching jobs:", error);
-      }
-    };
-
     fetchJobs();
+    fetchFilterOptions();
   }, []);
+
+  const fetchJobs = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/jobs");
+      setJobs(res.data);
+      setFilteredJobs(res.data);
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+    }
+  };
+
+  const fetchFilterOptions = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/employees/filters");
+      setCategories(res.data.categories);
+      setLocations(res.data.locations);
+    } catch (err) {
+      console.error("Error fetching filter options:", err);
+    }
+  };
 
   const handleInterestClick = async (jobId) => {
     const employeeData = JSON.parse(localStorage.getItem("employeeData"));
     const employeeId = employeeData?.id;
-  
+
     try {
-      const res = await fetch("http://localhost:5000/api/jobs/interest", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ jobId, employeeId }),
+      const res = await axios.post("http://localhost:5000/api/jobs/interest", {
+        jobId,
+        employeeId,
       });
-  
-      const data = await res.json();
-      if (res.ok) {
+
+      if (res.status === 200) {
         alert("Interest marked successfully!");
       } else {
-        alert(data.message || "Something went wrong!");
+        alert(res.data.message || "Something went wrong!");
       }
     } catch (err) {
       console.error("Error:", err);
       alert("An error occurred while marking interest.");
     }
   };
-  
 
   const handleFilterChange = (e) => {
     const { id, value } = e.target;
@@ -67,9 +75,7 @@ const EmployeeHomePage = () => {
     let filtered = [...jobs];
 
     if (filters.category) {
-      filtered = filtered.filter(
-        (job) => job.qualification === filters.category
-      );
+      filtered = filtered.filter((job) => job.qualification === filters.category);
     }
 
     if (filters.location) {
@@ -77,14 +83,10 @@ const EmployeeHomePage = () => {
     }
 
     if (filters.salaryRange) {
-      const [min, max] = filters.salaryRange
-        .replace(/₹|,/g, "")
-        .split(" - ")
-        .map(Number);
-
+      const [min, max] = filters.salaryRange.replace(/₹|,/g, "").split(" - ").map(Number);
       filtered = filtered.filter((job) => {
-        const jobMin = Number(job.salarymin.replace(/₹|,/g, ""));
-        const jobMax = Number(job.salarymax.replace(/₹|,/g, ""));
+        const jobMin = Number(job.minSalary?.replace(/₹|,/g, ""));
+        const jobMax = Number(job.maxSalary?.replace(/₹|,/g, ""));
         return jobMin >= min && jobMax <= max;
       });
     }
@@ -118,23 +120,30 @@ const EmployeeHomePage = () => {
           <div className="filters" style={{ display: "flex", gap: "10px" }}>
             <select id="category" onChange={handleFilterChange}>
               <option value="">Job Category</option>
-              <option value="IT">IT</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Design">Design</option>
+              {categories.map((cat, idx) => (
+                <option key={idx} value={cat}>
+                  {cat}
+                </option>
+              ))}
             </select>
 
             <select id="location" onChange={handleFilterChange}>
               <option value="">Place</option>
-              <option value="Bangalore, India">Bangalore</option>
-              <option value="Mumbai, India">Mumbai</option>
-              <option value="Delhi, India">Delhi</option>
+              {locations.map((loc, idx) => (
+                <option key={idx} value={loc}>
+                  {loc}
+                </option>
+              ))}
             </select>
 
             <select id="salaryRange" onChange={handleFilterChange}>
               <option value="">Salary</option>
-              <option value="₹30000 - ₹50000">₹30,000 - ₹50,000</option>
-              <option value="₹40000 - ₹60000">₹40,000 - ₹60,000</option>
-              <option value="₹50000 - ₹70000">₹50,000 - ₹70,000</option>
+              <option value="₹30000 - ₹50000">₹10,000 - ₹20,000</option>
+              <option value="₹30000 - ₹50000">₹20,000 - ₹30,000</option>
+              <option value="₹30000 - ₹50000">₹30,000 - ₹40,000</option>
+              <option value="₹40000 - ₹60000">₹50,000 - ₹60,000</option>
+              <option value="₹50000 - ₹70000">₹60,000 - ₹70,000</option>
+              <option value="₹50000 - ₹70000">₹70,000 - ₹80,000</option>
             </select>
 
             <button className="filter-btn" onClick={applyFilters}>

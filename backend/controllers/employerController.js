@@ -1,6 +1,25 @@
 const Employer = require('../models/Employer');
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken")
+const dotenv = require('dotenv');
+const Job = require('../models/Job');
+const nodemailer = require('nodemailer')
+const twilio = require('twilio');
+
+
+dotenv.config()
+
+const accountSid = 'AC102da153fdaf5c0e7d16d6b44fb6f7aa';
+const authToken = 'ab7dcfacf996b0d718b0c6ccbfabf5cf';
+const client = new twilio(accountSid, authToken);
+
+const transporter = nodemailer.createTransport({
+  service: "gmail", // You can use other services like Outlook, or custom SMTP
+  auth: {
+    user: process.env.EMAIL, // Replace with your email
+    pass: process.env.EMAIL_PASSWORD, // Replace with your email password or app password
+  },
+});
 
 const registerEmployer = async (req, res) => {
   try {
@@ -61,4 +80,63 @@ const loginEmployer = async (req, res) => {
   }
 };
 
-module.exports = { registerEmployer, loginEmployer };
+const contactEmployee = async (req, res) => {
+  try {
+    const { userId, jobId } = req.body;
+
+    // Populate the interested employees
+    const job = await Job.findById(jobId).populate("interested", "fullname email phone");
+
+    if (!job) return res.status(404).json({ message: "Job not found" });
+
+    // Find the specific employee from the interested list
+    const employee = job.interested.find(emp => emp._id.toString() === userId);
+
+    if (!employee) {
+      return res.status(400).json({ message: "Employee is not interested in this job" });
+    }
+
+    const mailOptions = {
+      from: "your_email@gmail.com",
+      to: employee.email,
+      subject: "Application Shortlisted",
+      html: `
+        <p>Hi ${employee.fullname},</p>
+        <p>Your application for ${job.title} at ${job.company} has been shortlisted.</p><br/>
+        <p>For further movements please contact the following</p>
+        <p>Call: ${job.phone} <br/> Whatsapp: ${job.whatsapp} </p>
+      `,
+    };
+
+    transporter.sendMail(mailOptions)
+      // if (err) {
+      //   console.error("Error sending email:", err);
+      //   return res.status(500).json({ error: "Failed to send email!" });
+      // } else {
+      //   console.log("Email sent:", info.response);
+      //   return res.json({
+      //     message: "Contact email sent successfully!",
+      //   });
+      // }
+
+      // SMS logic
+      const messageBody = `Hi ${employee.fullname}, you have been shortlisted for the job: ${job.title}. \n For further movements please contact the following. \n Call: ${job.phone} \n Whatsapp: ${job.whatsapp} `;
+
+      const sms = await client.messages.create({
+        body: messageBody,
+        from: '+16812011827', // your Twilio phone number
+        to: `+918089517640` // must be in E.164 format, e.g., +919876543210
+      });
+
+      console.log("SMS sent:", sms.sid);
+
+      res.status(200).json({ message: "Contacted via email and SMS successfully" });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+};
+
+
+module.exports = { registerEmployer, loginEmployer, contactEmployee };

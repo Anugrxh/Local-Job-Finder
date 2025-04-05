@@ -21,6 +21,25 @@ function ViewApplicants() {
     fetchInterestedApplicants();
   }, [jobId]);
 
+  const handleContact = async (employeeId, jobId) => {
+    try {
+      const res = await axios.post("http://localhost:5000/api/employer/contact-employee", {
+        userId: employeeId,
+        jobId: jobId,
+      });
+  
+      if (res.status === 200) {
+        alert("Contact email sent successfully!");
+      } else {
+        alert("Failed to contact employee!");
+      }
+    } catch (error) {
+      console.error("Error contacting employee:", error);
+      alert("Something went wrong while trying to contact the employee.");
+    }
+  };
+  
+
   return (
     <div className="applicantsdiv">
       <div id="headerapplicants">
@@ -51,7 +70,7 @@ function ViewApplicants() {
               </div>
               <div id="buttondiv12">
                 <div id="buttondiv11">
-                  <button id="viewbutton">Contact</button>
+                  <button id="viewbutton" onClick={() => handleContact(applicant._id, jobId)}>Contact</button>
                 </div>
               </div>
             </div>
