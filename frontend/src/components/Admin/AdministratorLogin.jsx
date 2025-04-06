@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./AdministratorLogin.css";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import axios from "axios";
 
 function AdministratorLogin() {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -15,9 +15,9 @@ function AdministratorLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const { username, password } = formData;
-
+  
     if (!username || !password) {
       setErrorMessage("All fields are required.");
     } else if (
@@ -27,8 +27,21 @@ function AdministratorLogin() {
         "Password must be at least 8 characters long and include at least one special character and one number."
       );
     } else {
-      setErrorMessage("");
-      navigate("/AdministratorHome");
+      try {
+        const res = await axios.post("http://localhost:5000/api/admin/login", {
+          username,
+          password,
+        });
+  
+        if (res.status === 200) {
+          console.log(res.data)
+          localStorage.setItem("adminToken", res.data.token)
+          setErrorMessage("");
+          navigate("/AdministratorHome");
+        }
+      } catch (err) {
+        setErrorMessage("Invalid username or password.");
+      }
     }
   };
 
@@ -57,16 +70,14 @@ function AdministratorLogin() {
             id="password2"
             name="password"
             placeholder="password"
-            value={formData.password2}
+            value={formData.password}
             onChange={handleChange}
             required
           />
           {errorMessage && (
             <p style={{ color: "blue", margin: 0 }}>{errorMessage}</p>
           )}
-          <Link to="/AdministratorHome">
-            <button id="submit2ad">Submit</button>
-          </Link>
+          <button id="submit2ad" onSubmit={handleSubmit}>Submit</button>
         </form>
       </div>
     </div>

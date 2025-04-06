@@ -48,7 +48,7 @@ function EmployerRegistration() {
 
         if (response.data === "Employer registered successfully") {
           alert("Registration successful!");
-          navigate('/EmployerHomePage');
+          navigate('/LoginEmployer');
         } else {
           setErrorMessage("Registration failed: " + response.data);
         }

@@ -4,6 +4,7 @@ const cors = require('cors');
 const employeeRoutes = require('./routes/employeeRoutes');
 const employerRoutes = require('./routes/employerRoutes');
 const jobRoutes = require('./routes/jobRoutes');
+const adminRoutes = require('./routes/adminRoutes')
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/employees', employeeRoutes);
 app.use('/api/employer', employerRoutes);
 app.use('/api/jobs', jobRoutes);
+app.use('/api/admin', adminRoutes);
 
 mongoose.connect('mongodb://127.0.0.1:27017/jobfinder', {
   useNewUrlParser: true,

@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 const dotenv = require('dotenv');
 const Job = require('../models/Job');
 const nodemailer = require('nodemailer')
-const twilio = require('twilio');
+// const twilio = require('twilio');
 
 
 dotenv.config()
@@ -106,16 +106,17 @@ const contactEmployee = async (req, res) => {
       `,
     };
 
-    transporter.sendMail(mailOptions)
-      // if (err) {
-      //   console.error("Error sending email:", err);
-      //   return res.status(500).json({ error: "Failed to send email!" });
-      // } else {
-      //   console.log("Email sent:", info.response);
-      //   return res.json({
-      //     message: "Contact email sent successfully!",
-      //   });
-      // }
+    transporter.sendMail(mailOptions, (err, info) =>{
+      if (err) {
+        console.error("Error sending email:", err);
+        return res.status(500).json({ error: "Failed to send email!" });
+      } else {
+        console.log("Email sent:", info.response);
+        return res.json({
+          message: "Contact email sent successfully!",
+        });
+      }
+    });
 
       // SMS logic
       // const messageBody = `Hi ${employee.fullname}, you have been shortlisted for the job: ${job.title}. \n For further movements please contact the following. \n Call: ${job.phone} \n Whatsapp: ${job.whatsapp} `;
@@ -126,9 +127,9 @@ const contactEmployee = async (req, res) => {
       //   to: `+918089517640` // must be in E.164 format, e.g., +919876543210
       // });
 
-      console.log("SMS sent:", sms.sid);
+      // console.log("SMS sent:", sms.sid);
 
-      res.status(200).json({ message: "Contacted via email and SMS successfully" });
+      res.status(200).json({ message: "Contacted via email successfully" });
 
   } catch (err) {
     console.error(err);
