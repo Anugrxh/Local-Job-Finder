@@ -44,6 +44,7 @@ function EmployerHomePage() {
 
   const confirmLogout = () => {
     localStorage.removeItem("employerData");
+    localStorage.removeItem("employerToken");
     navigate("/");
     setShowLogoutConfirmation(false);
   };
