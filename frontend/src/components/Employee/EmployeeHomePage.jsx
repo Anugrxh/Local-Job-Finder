@@ -9,18 +9,27 @@ const EmployeeHomePage = () => {
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [filters, setFilters] = useState({
     category: "",
-    location: "",
+    jobLocation: "",
     salaryRange: "",
   });
   const [categories, setCategories] = useState([]);
   const [locations, setLocations] = useState([]);
+  const [employeeName, setEmployeeName] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchJobs();
     fetchFilterOptions();
+    fetchEmployeeName();
   }, []);
+
+  const fetchEmployeeName = () => {
+    const employeeData = JSON.parse(localStorage.getItem("employeeData"));
+    if (employeeData && employeeData.name) {
+      setEmployeeName(employeeData.name);
+    }
+  };
 
   const fetchJobs = async () => {
     try {
@@ -34,7 +43,9 @@ const EmployeeHomePage = () => {
 
   const fetchFilterOptions = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/employees/filters");
+      const res = await axios.get(
+        "http://localhost:5000/api/employees/filters"
+      );
       setCategories(res.data.categories);
       setLocations(res.data.locations);
     } catch (err) {
@@ -74,24 +85,41 @@ const EmployeeHomePage = () => {
   const applyFilters = () => {
     let filtered = [...jobs];
 
-    if (filters.category) {
-      filtered = filtered.filter((job) => job.qualification === filters.category);
+    if (filters.category && filters.category !== "") {
+      filtered = filtered.filter((job) =>
+        job.title
+          .trim()
+          .toLowerCase()
+          .includes(filters.category.trim().toLowerCase())
+      );
     }
 
-    if (filters.location) {
-      filtered = filtered.filter((job) => job.location === filters.location);
+    if (filters.jobLocation && filters.jobLocation !== "") {
+      filtered = filtered.filter(
+        (job) =>
+          job.location.trim().toLowerCase() ===
+          filters.jobLocation.trim().toLowerCase()
+      );
     }
 
-    if (filters.salaryRange) {
-      const [min, max] = filters.salaryRange.replace(/₹|,/g, "").split(" - ").map(Number);
+    if (filters.salaryRange && filters.salaryRange !== "") {
+      const salary = parseInt(filters.salaryRange, 10);
+
       filtered = filtered.filter((job) => {
-        const jobMin = Number(job.minSalary?.replace(/₹|,/g, ""));
-        const jobMax = Number(job.maxSalary?.replace(/₹|,/g, ""));
-        return jobMin >= min && jobMax <= max;
+        const jobMin = parseInt(job.minSalary?.replace(/₹|,/g, ""), 10);
+        return !isNaN(jobMin) && jobMin >= salary;
       });
     }
 
     setFilteredJobs(filtered);
+  };
+
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to log out?")) {
+      localStorage.removeItem("employeeToken");
+      localStorage.removeItem("employeeData");
+      navigate("/Home");
+    }
   };
 
   return (
@@ -102,98 +130,86 @@ const EmployeeHomePage = () => {
           <p id="jobdetails15">Job Details</p>
         </div>
         <div id="paradiv25">
-          <p
-            id="logout"
-            onClick={() => {
-              localStorage.removeItem("employeeToken");
-              localStorage.removeItem("employeeData");
-              navigate("/Home");
-            }}
-          >
+          <p id="logout" onClick={handleLogout}>
             Log out
           </p>
         </div>
       </div>
 
-      <div className="bottom15">
-        <div className="applicant-list15">
-          <div className="filters" style={{ display: "flex", gap: "10px" }}>
-            <select id="category" onChange={handleFilterChange}>
-              <option value="">Job Category</option>
-              {categories.map((cat, idx) => (
-                <option key={idx} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
+      <div className="job-listing-container">
+        <div className="job-filters">
+          <h2 className="employee-greeting">Hello, {employeeName}!</h2>
+          <select id="category" onChange={handleFilterChange}>
+            <option value="">All Jobs</option>
+            {categories.map((cat, idx) => (
+              <option key={idx} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
 
-            <select id="location" onChange={handleFilterChange}>
-              <option value="">Place</option>
-              {locations.map((loc, idx) => (
-                <option key={idx} value={loc}>
-                  {loc}
-                </option>
-              ))}
-            </select>
+          <select id="jobLocation" onChange={handleFilterChange}>
+            <option value="">All Places</option>
+            {locations.map((loc, idx) => (
+              <option key={idx} value={loc}>
+                {loc}
+              </option>
+            ))}
+          </select>
 
-            <select id="salaryRange" onChange={handleFilterChange}>
-              <option value="">Salary</option>
-              <option value="₹30000 - ₹50000">₹10,000 - ₹20,000</option>
-              <option value="₹30000 - ₹50000">₹20,000 - ₹30,000</option>
-              <option value="₹30000 - ₹50000">₹30,000 - ₹40,000</option>
-              <option value="₹40000 - ₹60000">₹50,000 - ₹60,000</option>
-              <option value="₹50000 - ₹70000">₹60,000 - ₹70,000</option>
-              <option value="₹50000 - ₹70000">₹70,000 - ₹80,000</option>
-            </select>
+          <button className="filter-button" onClick={applyFilters}>
+            Filter
+          </button>
+        </div>
 
-            <button className="filter-btn" onClick={applyFilters}>
-              Filter
-            </button>
-          </div>
-
+        <div className="job-list">
           {filteredJobs.length === 0 ? (
             <p style={{ marginTop: "20px" }}>No jobs found.</p>
           ) : (
             filteredJobs.map((job, index) => (
-              <div className="applicant-card15" key={index}>
-                <div id="jobName">
-                  <p id="jobname15">{job.title}</p>
+              <div className="job-card" key={index}>
+                <div className="job-title">
+                  <p>Job : {job.title}</p>
                 </div>
-                <div id="desc">
-                  <p className="otherdata">{job.desc}</p>
+                <div className="job-details">
+                  <p className="job">Description</p>
+                  <p> {job.jobDescription}</p>
                 </div>
-                <div id="companyname">
-                  <p className="otherdata">{job.company}</p>
+                <div className="job-details">
+                  <p> Company Name : {job.company}</p>
                 </div>
-                <div id="sal">
-                  <div id="salary15">
-                    <p id="minsal">{job.minSalary}</p>
+                <div className="salary-range">
+                  <div className="min-salary">
+                    <p>Minimum Salary : Rs : {job.minSalary}/-</p>
                   </div>
-                  <div id="salary25">
-                    <p id="maxsal">{job.maxSalary}</p>
+                  <div className="max-salary">
+                    <p>Maximum Salary : Rs : {job.maxSalary}/-</p>
                   </div>
                 </div>
-                <div id="quali">
-                  <p className="otherdata">{job.qualification}</p>
+                <div className="job-details">
+                  <p>Qualification : {job.qualification.toUpperCase()}</p>
                 </div>
-                <div id="age15">
-                  <p className="otherdata">{job.age}</p>
+                <div className="job-details">
+                  <p>Minimum Age : {job.age}</p>
                 </div>
-                <div id="vacancies">
-                  <p className="otherdata">{job.vacancies}</p>
+                <div className="job-details">
+                  <p>Number of Vacancies : {job.vacancies}</p>
                 </div>
-                <div id="shift">
-                  <p className="otherdata">{job.shift}</p>
+                <div className="job-details">
+                  <p>Shift : {job.shift}</p>
                 </div>
-                <div id="address15">
-                  <p className="otherdata">{job.address}</p>
+                <div className="job-details">
+                  <p>Company Address : {job.address}</p>
                 </div>
-                <div id="location">
-                  <p className="otherdata">{job.location}</p>
+                <div className="job-details">
+                  <p>Job Location : {job.location}</p>
                 </div>
-                <div id="buttondiv152">
-                  <div id="buttondiv25">
-                    <button id="interested" onClick={() => handleInterestClick(job._id)}>
+                <div className="job-actions">
+                  <div className="action-button-container">
+                    <button
+                      className="interested-button"
+                      onClick={() => handleInterestClick(job._id)}
+                    >
                       Interested
                     </button>
                   </div>

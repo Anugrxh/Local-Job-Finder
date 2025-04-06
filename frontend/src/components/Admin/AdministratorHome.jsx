@@ -20,7 +20,7 @@ const AdministratorHome = () => {
     const fetchOverview = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/admin/overview");
-        console.log(res.data)
+        console.log(res.data);
         setOverview(res.data);
       } catch (error) {
         console.error("Failed to fetch overview:", error);
@@ -31,48 +31,63 @@ const AdministratorHome = () => {
   }, [navigate]);
 
   return (
-    <div className="admin-dashboard11">
-      <header className="admin-header11">
-        <h1 id="headeradmin">Administrator Dashboard</h1>
-        <button className="admin-logout-btn" onClick={handleLogout}>
-          logout
+    <div className="admin-dashboard-container">
+      <header className="admin-dashboard-header">
+        <h1 className="admin-dashboard-title">Administrator Dashboard</h1>
+        <button className="admin-logout-button" onClick={handleLogout}>
+          Logout
         </button>
       </header>
 
-      <div className="dashboard-grid">
-        {/* Overview Section */}
-        <div className="card stats-card">
-          <h2>Overview</h2>
-          <p>
-            <strong>Total Jobs:</strong> {overview.totalJobs}
-          </p>
-          <p>
-            <strong>Registered Employees:</strong> {overview.totalEmployees}
-          </p>
-          <p>
-            <strong>Registered Employers:</strong> {overview.totalEmployers}
-          </p>
-        </div>
+      <main className="admin-dashboard-content">
+        <section className="admin-dashboard-overview">
+          <h2 className="section-title">Overview</h2>
+          <div className="overview-stats-big">
+            <div className="stat-item-big animate-stat-big">
+              <span className="stat-value-big">{overview.totalJobs}</span>
+              <span className="stat-label-big">Total Jobs</span>
+            </div>
+            <div className="stat-item-big animate-stat-big">
+              <span className="stat-value-big">{overview.totalEmployees}</span>
+              <span className="stat-label-big">Registered Employees</span>
+            </div>
+            <div className="stat-item-big animate-stat-big">
+              <span className="stat-value-big">{overview.totalEmployers}</span>
+              <span className="stat-label-big">Registered Employers</span>
+            </div>
+          </div>
+        </section>
 
-        {/* User Management Section */}
-        <div className="card">
-          <h2>User Management</h2>
-          <button className="btn11" onClick={() => navigate("/ManageEmployee")}>
-            Manage Employees
-          </button>
-          <button className="btn11" onClick={() => navigate("/ManageEmployers")}>
-            Manage Employers
-          </button>
-        </div>
+        <section className="admin-dashboard-management">
+          <h2 className="section-title">User Management</h2>
+          <div className="management-actions">
+            <button
+              className="management-button"
+              onClick={() => navigate("/ManageEmployee")}
+            >
+              Manage Employees
+            </button>
+            <button
+              className="management-button"
+              onClick={() => navigate("/ManageEmployers")}
+            >
+              Manage Employers
+            </button>
+          </div>
+        </section>
 
-        {/* Job Postings Section */}
-        <div className="card">
-          <h2>Job Postings</h2>
-          <button className="btn11" onClick={() => navigate("/JobsList")}>
-            View All Jobs
-          </button>
-        </div>
-      </div>
+        <section className="admin-dashboard-jobs">
+          <h2 className="section-title">Job Postings</h2>
+          <div className="jobs-actions">
+            <button
+              className="jobs-button"
+              onClick={() => navigate("/JobsList")}
+            >
+              View All Jobs
+            </button>
+          </div>
+        </section>
+      </main>
     </div>
   );
 };

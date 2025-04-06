@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./ViewApplicants.css";
 import logo1 from "../../components/images/logo1.png";
 import axios from "axios";
-import { useParams } from "react-router-dom"; // assuming jobId is in URL
+import { useParams,useNavigate } from "react-router-dom"; // assuming jobId is in URL
+
 
 function ViewApplicants() {
   const { jobId } = useParams(); // URL should have /view-applicants/:jobId
   const [applicants, setApplicants] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchInterestedApplicants = async () => {
@@ -38,6 +40,9 @@ function ViewApplicants() {
       alert("Something went wrong while trying to contact the employee.");
     }
   };
+  const handleGoBack = () => {
+    navigate('/EmployerHomePage'); // Navigate to /EmployerHomePage
+  };
   
 
   return (
@@ -51,26 +56,28 @@ function ViewApplicants() {
 
       <div className="bottomapplicants">
         <div className="applicant-listapplicants">
+         
           {applicants.map((applicant, index) => (
             <div className="applicant-cardapplicants" key={index}>
               <div id="jobName">
-                <p id="employeename1">{applicant.fullname}</p>
+                <p id="employeename1">Full Name : {applicant.fullname}</p>
               </div>
               <div id="companyname">
-                <p className="otherdata1">{applicant.age}</p>
+                <p className="otherdata1">Age :{applicant.age}</p>
               </div>
               <div id="salary">
-                <p className="otherdata1">{applicant.gender}</p>
+                <p className="otherdata1">Gender : {applicant.gender}</p>
               </div>
-              <div id="location">
-                <p className="otherdata1">{applicant.qualification}</p>
+              <div id="locatio">
+                <p className="otherdata1">Qualification : {applicant.qualification}</p>
               </div>
               <div id="vacancies">
-                <p className="otherdata1">{applicant.phone}</p>
+                <p className="otherdata1">Phone Number :{applicant.phone}</p>
               </div>
               <div id="buttondiv12">
                 <div id="buttondiv11">
-                  <button id="viewbutton" onClick={() => handleContact(applicant._id, jobId)}>Contact</button>
+                  <button className="viewbutton" onClick={() => handleContact(applicant._id, jobId)}>Contact</button>
+                  <button className="viewbutton" onClick={handleGoBack}>go back</button>
                 </div>
               </div>
             </div>

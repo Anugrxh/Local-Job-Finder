@@ -1,123 +1,110 @@
-#EmployeeHomediv18{
-    margin-left:0;
-    padding:0;
-    height:100vh;
-    background-color:#f4f4f9;
-} 
-#header18{
-    height: 60px;
-      width: 100%;
-      background-color: black;
-      display: flex;
-      padding-top:20px;
-      padding-bottom: 20px;
-      position: fixed;
-      margin-top: 0px;
-     justify-content: space-between;
-  }
-  #paradiv18{
-    display: flex;
-  
-  }
-  #jobdetails18{
-    color: #5a7f65;
-    font-size: 30px;
-    margin: 20px 90px 0px 0px;
-    font-weight: bold;
-    cursor: pointer;
-} 
-#logout{
-    color: #5a7f65;
-    font-size: x-large;
-    margin: 20px 19px 20px 0px;
-    font-weight: bold;
-    cursor: pointer;
-}
-#paradiv18{
-    display: flex;
-    margin-right: 50px;
-}
-.bottom18{
-    background-color:#f4f4f9;
-    width:100vw;
-    height: 100%;
-}
-.applicant-list18 {
-    background-color:#000;
-    display: flex;
-    flex-direction: column;
-    width:100%;
-    height:100%;
-    padding-top: 120px;
-  }
-  .applicant-card18 {
-    background: #ffff;
-    padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: left;
-    height:480px;
-    margin: 20px 50px 0px 50px;
-  }
-  #jobname18{
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 30px;
-    padding:0px;
-    margin: 0px;
-    color: #5a7f65;
-  }
-  #buttondiv18{
-    display: flex;  
-    width: 100%;
-    height:50px;
-  }
-  #numberbutton18{
-    width:150px;
-    height:35px;
-    border-radius: 4px;
-    color: #ffffff;
-    font-size: medium;
-    background-color: #5a7f65;
-    border: none;
-    cursor: pointer;
-  }
-  #interested18{
-    width:90px;
-    height:35px;
-    border-radius: 4px;
-    color: #ffffff;
-    font-size: medium;
-    background-color: #5a7f65;
-    border: none;
-    cursor: pointer;
-  }
-  #buttondiv18{
-    padding-top: 15px;
-    margin: 0px;
-  }
-  #buttondiv18{
-    padding-top: 15px;
-    /* margin-left:20px; */
-  }
-.sal18{
-    display: flex;
-}
-#salary18{
-    width:100px;
-}
-#salary18{
-    width:100px;
-}
-#minsal18{
-    margin: 0;
-    color: #5a7f65;
-}
-#maxsal18{
-    margin: 0;
-    color: #5a7f65;
-    /* font-weight: 100px; */
+/* JobsList.css */
+
+.job-listing-container {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
 }
 
-.otherdata18{
-    color: #5a7f65;
+.job-listing-header {
+  background-color: #000000;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listing-header-logo {
+  height: 40px;
+}
+
+.listing-header-title {
+  margin: 0;
+  color: #5a7f65;
+}
+
+.listing-go-back-button {
+  background-color: #5a7f65;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.job-listing-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.job-listing {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.listing-divider {
+  border: 1px solid #eee;
+  margin-bottom: 1rem;
+}
+
+.job-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #0f4805;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.job-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.job-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.job-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: green;
+  margin-bottom: 0.5rem;
+}
+
+.job-details-item {
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+.details-label {
+  font-weight: bold;
+  margin-right: 5px;
+  color: #333;
+}
+
+.job-actions-area {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-listing-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.delete-listing-button:hover, .listing-go-back-button:hover {
+  background-color: #b02a37;
 }

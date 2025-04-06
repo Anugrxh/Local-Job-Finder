@@ -1,76 +1,108 @@
-.applicantsdiv16{
-    background-color:#ffff;
+/* ManageEmployee.css */
+
+.manage-employees-container {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+  }
+  
+  .manage-employees-header {
+    background-color: #000000;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-logo {
+    height: 40px;
+  }
+  
+  .header-title {
     margin: 0;
-    padding: 0;
-    display: flex; 
-    width:100vw;
-    height:100vh;
+    color: #5a7f65;
+  }
+  
+  .header-go-back-button {
+    background-color: #5a7f65;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .manage-employees-content {
+    flex: 1;
+    padding: 2rem;
+  }
+  
+  .employees-list {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+  
+  .list-divider {
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+  }
+  
+  .employee-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #0f4805;
+    align-items: center;
+  }
+  
+  .employee-card:last-child {
+    border-bottom: none;
+  }
+  
+  .employee-details {
+    display: flex;
     flex-direction: column;
   }
-  #headerapplicants16{
-        height: 60px;
-        width: 100%;
-        background-color: black;
-        display: flex;
-        padding-top:20px;
-        padding-bottom: 20px;
-        position: fixed;
-        margin-top: 0px;
-    }
-  #paradivapplicants16{
-      display: flex;
+  
+  .employee-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: green;
+    margin-bottom: 0.5rem;
   }
-  #jobdetailsapplicants16{
-      color: #5a7f65;
-      font-size: 30px;
-      margin: 20px 90px 0px 0px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-left: 400px;
+  
+  .employee-detail-item {
+    color: #555;
+    margin: 0.5rem 0;
   }
-  .bottomapplicants16{
-      background-color:#ffff;
-      width:100vw;
-      height: 100%;
+  
+  .employee-detail-label {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #333;
   }
-  .applicant-listapplicants16 {
-      background-color:#000;
-      display: flex;
-      flex-direction: column;
-      width:100%;
-      height:100%;
-      padding-top: 120px;
-  }
-  .applicant-cardapplicants16 {
-      background: #f4f4f9;
-      padding: 15px;
-      border-radius: 6px;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-      text-align: left;
-      height:260px;
-      margin: 20px 50px 0px 50px;
-  }
-  #employeename116{
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 30px;
-      padding:0px;
-      margin: 0px;
-      color: #5a7f65;
-    }
-  .otherdata16{
-      font-size: large;
-  }
-  #buttondiv126{
-      display: flex;  
-      width: 100%;
-      height:50px;
-  }
-  #buttondiv116{
-      padding-top: 15px;
-      margin: 0px;
-  }
-  #paradiv256{
+  
+  .employee-actions {
     display: flex;
-    /* margin-right: 50px; */
-    margin-left:350px;
-}
+    justify-content: flex-end;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .delete-button:hover, .header-go-back-button:hover {
+    background-color: #b02a37;
+  }

@@ -149,7 +149,7 @@ function Edit() {
           <label htmlFor='qualification' className="job-details-input-label">Required Qualification*</label>
           <select name="qualification" className="job-details-input" value={formData.qualification || ''} onChange={handleChange} required>
             <option value="">Select Qualification</option>
-            <option value='pg'>title Graduate</option>
+            <option value='pg'>Post Graduate</option>
             <option value='ug'>Under Graduate</option>
             <option value='diploma'>Diploma</option>
             <option value='plustwo'>Higher Secondary</option>

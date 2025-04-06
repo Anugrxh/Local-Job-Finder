@@ -31,70 +31,65 @@ const JobsList = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    navigate("/AdministratorLogin");
+  const handleGoBack = () => {
+    navigate("/AdministratorHome");
   };
 
   return (
-    <div id="EmployeeHomediv18">
-      <div id="header18">
-        <img src={logo1} alt="Logo" className="logohome" />
-        <div id="paradiv18">
-          <p id="jobdetails18">Registered Jobs</p>
-        </div>
-        <div id="paradiv18">
-          <p id="logout" onClick={handleLogout}>Log out</p>
-        </div>
-      </div>
+    <div className="job-listing-container">
+      <header className="job-listing-header">
+        <img src={logo1} alt="Logo" className="listing-header-logo" />
+        <h1 className="listing-header-title">Registered Jobs</h1>
+        <button className="listing-go-back-button" onClick={handleGoBack}>Go Back</button>
+      </header>
 
-      <div className="bottom18">
-        <div className="applicant-list18">
-          <hr className='bottomline' />
+      <main className="job-listing-content">
+        <div className="job-listing">
+          <hr className="listing-divider" />
           {jobs.map((job) => (
-            <div className='applicant-card18' key={job._id}>
-              <div id="jobName18">
-                <p id="jobname18">{job.title}</p>
+            <div className="job-item" key={job._id}>
+              <div className="job-info">
+                <p className="job-title">{job.title}</p>
+                <p className="job-details-item">
+                  <span className="details-label">Company:</span> {job.company}
+                </p>
+                <p className="job-details-item">
+                  <span className="details-label">Salary Min:</span> {job.minSalary}
+                </p>
+                <p className="job-details-item">
+                  <span className="details-label">Salary Max:</span> {job.maxSalary}
+                </p>
+                <p className="job-details-item">
+                  <span className="details-label">Qualification:</span> {job.qualification}
+                </p>
+                <p className="job-details-item">
+                  <span className="details-label">Age:</span> {job.age}
+                </p>
+                <p className="job-details-item">
+                  <span className="details-label">Vacancies:</span> {job.vacancies}
+                </p>
+                <p className="job-details-item">
+                  <span className="details-label">Shift:</span> {job.shift}
+                </p>
+                <p className="job-details-item">
+                  <span className="details-label">Address:</span> {job.address}
+                </p>
+                <p className="job-details-item">
+                  <span className="details-label">Location:</span> {job.location}
+                </p>
+                <p className="job-details-item">
+                  <span className="details-label">Description:</span> {job.jobDescription}
+                </p>
               </div>
-              <div id="desc">
-                <p className='otherdata18'>{job.desc}</p>
-              </div>
-              <div id="companyname">
-                <p className='otherdata18'>{job.company}</p>
-              </div>
-              <div id="sal18">
-                <div id="salary11">
-                  <p id="minsal18">{job.salarymin}</p>
-                </div>
-                <div id="salary18">
-                  <p id="maxsal18">{job.salarymax}</p>
-                </div>
-              </div>
-              <div id="quali">
-                <p className='otherdata18'>{job.qualification}</p>
-              </div>
-              <div id="age15">
-                <p className='otherdata18'>{job.age}</p>
-              </div>
-              <div id="vacancies">
-                <p className='otherdata18'>{job.vacancies}</p>
-              </div>
-              <div id="shift">
-                <p className='otherdata18'>{job.shift}</p>
-              </div>
-              <div id="address15">
-                <p className='otherdata18'>{job.address}</p>
-              </div>
-              <div id="location">
-                <p className='otherdata18'>{job.location}</p>
-              </div>
-              <div id="buttondiv18">
-                <button id="interested" onClick={() => handleDeleteClick(job._id)}>Delete</button>
+              <div className="job-actions-area">
+                <button className="delete-listing-button" onClick={() => handleDeleteClick(job._id)}>
+                  Delete
+                </button>
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </main>
     </div>
   );
 };

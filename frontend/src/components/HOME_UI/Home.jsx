@@ -110,28 +110,7 @@ function Home() {
             <p className="contactpara">Email: support@quickhire.com</p>
             <p className="contactpara">Phone: +91 9876543210</p>
 
-            <form id="contactForm">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="contactInput"
-                required
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="contactInput"
-                required
-              />
-              <textarea
-                placeholder="Your Message"
-                className="contactTextarea"
-                required
-              ></textarea>
-              <button type="submit" id="contactButton">
-                Send Message
-              </button>
-            </form>
+            
           </div>
         </div>
       </div>

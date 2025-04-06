@@ -69,3 +69,25 @@
     padding-top: 15px;
     margin: 0px;
 }
+.viewbutton {
+    width: 100px;
+    height: 35px;
+    margin-left: 10px;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: medium;
+    background-color: #5a7f65;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Add transition for smooth effect */
+  }
+  
+  .viewbutton:hover {
+    background-color: #456b50; /* Slightly darker green on hover */
+    transform: translateY(-2px); /* Slight upward movement on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+  }
+
+
+  

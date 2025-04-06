@@ -50,6 +50,7 @@
   background-color:#ffff;
   width:100vw;
   height: 100%;
+  display: flex;
 }
 .applicant-list {
   background-color:#ffff;
@@ -125,6 +126,7 @@
 .otherdata{
   font-size: large;
 }
+
 /*
 #profile{
   width:50px;
@@ -175,3 +177,135 @@
     background: #28a745;
     transform:scale(1.05);
   }  */
+
+
+  .bottom-container {
+    background-color: #ffff;
+    width: 100vw;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .job-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 120px;
+    flex-grow: 1;
+  }
+  
+  .employer-greeting {
+    font-size: 24px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
+  
+  .job-card {
+    background: #f4f4f9;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin: 20px 50px 0px 50px;
+  }
+  
+  .job-name-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    padding: 0px;
+    margin: 0px;
+    color: #5a7f65;
+  }
+  
+  .job-details {
+    font-size: large;
+  }
+  
+  .job-actions {
+    display: flex;
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  .action-button {
+    width: 120px;
+    height: 35px;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: medium;
+    background-color: #5a7f65;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .delete-job {
+    background-color: #d9534f;
+  }
+  
+  .view-applicants {
+      width: 150px;
+  }
+
+  .logout-btn{
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 18px;
+    margin-left: 15px;
+    width:100px;
+    height: 38px;
+  }
+
+
+  .logout-confirmation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+  }
+  
+  .logout-confirmation p {
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+  .logout-confirmation button {
+    margin: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .logout-confirmation button:first-child {
+    background-color: #5a7f65; /* Green for Yes */
+    color: white;
+  }
+  
+  .logout-confirmation button:last-child {
+    background-color: #d9534f; /* Red for No */
+    color: white;
+  }
+  
+  .logout-confirmation button:hover {
+    opacity: 0.8;
+  }
+
+  .employer-greeting{
+    font-size: 24px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    color: #1e3f28;
+  }

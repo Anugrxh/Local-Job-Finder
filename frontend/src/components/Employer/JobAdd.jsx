@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './JobAdd.css';
-import axios from 'axios'; // Axios for HTTP requests
+import axios from 'axios';
 
 function JobDetails() {
   const [formData, setFormData] = useState({
     post: '',
+    postOther: '',
     minsal: '',
     maxsal: '',
     qualification: '',
@@ -32,13 +33,12 @@ function JobDetails() {
     e.preventDefault();
 
     const {
-      post, minsal, maxsal, qualification, age, vacancies, shift,
+      post, postOther, minsal, maxsal, qualification, age, vacancies, shift,
       sname, address, location, phone, wphone, jobDescription,
     } = formData;
 
-    // Basic validations
     if (
-      !post || !minsal || !maxsal || !qualification || !age || !vacancies || !shift ||
+      !post || (post === 'Other' && !postOther) || !minsal || !maxsal || !qualification || !age || !vacancies || !shift ||
       !sname || !address || !location || !phone || !wphone || !jobDescription
     ) {
       setErrorMessage("All fields are required.");
@@ -63,14 +63,11 @@ function JobDetails() {
     try {
       setErrorMessage('');
 
-      // Optional: get employerId if using login
-      const employer= JSON.parse(localStorage.getItem('employerData'));
-
-      const employerId = employer?.id
-
+      const employer = JSON.parse(localStorage.getItem('employerData'));
+      const employerId = employer?.id;
 
       const jobData = {
-        title: post,
+        title: post === 'Other' ? postOther : post,
         minSalary: minsal,
         maxSalary: maxsal,
         qualification,
@@ -121,7 +118,20 @@ function JobDetails() {
             <option value='customersupport'>Customer Support</option>
             <option value='floormanager'>Floor Manager</option>
             <option value='social'>Social Media Assistant</option>
+            <option value='Other'>Other</option>
           </select>
+
+          {formData.post === 'Other' && (
+            <input
+              type='text'
+              placeholder='Enter job role'
+              name='postOther'
+              className="job-details-input"
+              value={formData.postOther}
+              onChange={handleChange}
+              required
+            />
+          )}
 
           <label className="job-details-input-label">Job Description*</label>
           <input

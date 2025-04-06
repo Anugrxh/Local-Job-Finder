@@ -31,55 +31,49 @@ function ManageEmployee() {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    navigate("/AdministratorLogin");
+  const handleGoBack = () => {
+    navigate("/AdministratorHome");
   };
 
   return (
-    <div className="applicantsdiv16">
-      <div id="headerapplicants16">
-        <img src={logo1} alt="Logo" className="logohome" />
-        <div id="paradivapplicants16">
-          <p id="jobdetailsapplicants16">Registered Employees</p>
-        </div>
-        <div id="paradiv257">
-          <p id="logout" onClick={handleLogout}>Log out</p>
-        </div>
-      </div>
+    <div className="manage-employees-container">
+      <header className="manage-employees-header">
+        <img src={logo1} alt="Logo" className="header-logo" />
+        <h1 className="header-title">Registered Employees</h1>
+        <button className="header-go-back-button" onClick={handleGoBack}>Go Back</button>
+      </header>
 
-      <div className='bottomapplicants16'>
-        <div className="applicant-listapplicants16">
-          <hr className='bottomline'></hr>
-
+      <main className="manage-employees-content">
+        <div className="employees-list">
+          <hr className="list-divider" />
           {employees.map((employee) => (
-            <div className='applicant-cardapplicants16' key={employee._id}>
-              <div id="jobName">
-                <p id="employeename116">{employee.fullname}</p>
+            <div className="employee-card" key={employee._id}>
+              <div className="employee-details">
+                <p className="employee-name">
+                  {employee.fullname}
+                </p>
+                <p className="employee-detail-item">
+                  <span className="employee-detail-label">Age:</span> {employee.age}
+                </p>
+                <p className="employee-detail-item">
+                  <span className="employee-detail-label">Gender:</span> {employee.gender}
+                </p>
+                <p className="employee-detail-item">
+                  <span className="employee-detail-label">Qualification:</span> {employee.qualification}
+                </p>
+                <p className="employee-detail-item">
+                  <span className="employee-detail-label">Phone:</span> {employee.phone}
+                </p>
               </div>
-              <div id="companyname">
-                <p className='otherdata16'>{employee.age}</p>
-              </div>
-              <div id="salary">
-                <p className='otherdata16'>{employee.gender}</p>
-              </div>
-              <div id="location">
-                <p className='otherdata16'>{employee.qualification}</p>
-              </div>
-              <div id="vacancies">
-                <p className='otherdata16'>{employee.phone}</p>
-              </div>
-              <div id="buttondiv126">
-                <div id="buttondiv116">
-                  <button id="viewbutton" onClick={() => handleDeleteClick(employee._id)}>
-                    Delete
-                  </button>
-                </div>
+              <div className="employee-actions">
+                <button className="delete-button" onClick={() => handleDeleteClick(employee._id)}>
+                  Delete
+                </button>
               </div>
             </div>
           ))}
-        </div>  
-      </div> 
+        </div>
+      </main>
     </div>
   );
 }
